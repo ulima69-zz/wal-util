@@ -1,10 +1,6 @@
 ---
-title:  'Universidade de Brasília - Textos Filosóficos Gregos 1'
-subtile: 'teste subtitle'
-subject: 'teste subject'
-affiliation: 'teste affiliation'
-author: Tarefa 1 - Prof. Rodolfo Lopes
-institute: Universidade de Brasília	
+title:  'Input Grego Coiné'
+author: Prof. Rodolfo Lopes
 geometry: "left=2.5cm,right=2cm,top=2.5cm,bottom=2.5cm"
 tags: [filosofia, grego, coiné]
 date: 2018-04-06
@@ -27,7 +23,4 @@ date: 2018-04-06
 A propósito do ponto (2), tenha em conta que o radical de δικάζω é δικάζ-, sendo -ω a desinência da primeira pessoa; na mesma medida em que no verbo λέγω o radical é λέγ-, sendo -ω a desinência da primeira pessoa.
 
 ### 4. Traduza o texto da p. 35 do manual ΕΛΛΗΝΙΚΑ.
-
-
-Organização: unbsophia@gmail.com
 
