@@ -1,0 +1,390 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage[margin=3cm]{geometry}
+\usepackage{amsmath,amsfonts,amssymb,indentfirst}
+\usepackage{booktabs,graphicx,hyperref,tikz}
+
+\usepackage{theorem}
+\theorembodyfont{\normalfont\upshape}
+\newtheorem{ex}{Exemplo}
+
+% Define comando BibTeX
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\title{Aprendendo \LaTeX\ em 5 minutos}
+\author{Regis Santos}
+\date{\the\year}
+
+\begin{document}
+\maketitle
+
+Este \'e um guia com uma r\'apida introdu\c c\~ao ao \LaTeX\ baseado em \href{http://www.howtotex.com/general/five-minute-guide-to-latex/}{Five Minute Guide to \LaTeX}, de Tim Van Der Horst e Frits Wenneker. O objetivo \'e come\c car a usar o \LaTeX\ rapidamente de uma forma bem resumida, por\'em, com os conte\'udos b\'asicos essenciais. Baixe os arquivos \href{https://bitbucket.org/rg3915/latex/downloads/exemplo5min.rar}{exemplo5min.rar} com um exemplo b\'asico.
+
+\section{O B\'asico}
+
+\subsection{Estrutura do documento}
+
+Um documento \verb|tex| pode ser agrupado numa pasta principal e as figuras numa subpasta. Podemos chamar o documento de \textit{exemplo5min.tex} e as figuras de \textit{fig01.jpg, fig02.png, fig03.pdf}, etc. Temos tamb\'em o arquivo \textit{preambulo.sty} e \textit{refs.bib}.
+
+\subsubsection{Pre\^ambulo}
+
+O pre\^ambulo \'e a parte de configura\c c\~ao do \LaTeX. O comando \verb|\documentclass[ ]{ }| define o tipo de documento \textit{article, report, book} ou \textit{beamer}, entre outros. Dentro de \verb|[ ]| v\~ao par\^ametros opcionais como, \textit{10pt, 11pt, 12pt, a4paper, twoside}, etc.
+
+\begin{ex}
+Relat\'orio com fonte 10pt em papel A4
+
+\begin{verbatim}
+\documentclass[a4paper,10pt]{report}
+\end{verbatim} 
+
+Al\'em disso, alguns pacotes s\~ao fundamentais.
+
+\begin{verbatim}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\end{verbatim} 
+
+E o t\'itulo e autor.
+
+\begin{verbatim}
+\title{Aprendendo \LaTeX\ em 5 minutos}
+\author{Seu nome}
+\date{\today}
+\end{verbatim} 
+
+\end{ex}
+
+\subsubsection{Ambientes}
+
+Todo ambiente come\c ca com \verb|\begin{}| e termina com \verb|\end{}|. O ambiente \textit{documento} \'e o que retorna a parte que ser\'a impressa.
+
+\begin{verbatim}
+\begin{document}
+  ... texto do documento aqui
+\end{document}
+\end{verbatim}
+
+Para mostrar o t\'itulo do documento digite \verb|\maketitle| logo depois de \verb|\begin{document}|.
+
+\subsubsection{Se\c c\~oes}
+
+Um documento pode ser dividido em partes como: \verb|\part{}|, \verb|\chapter{}|, \verb|\section{}|, \verb|\subsection{}|, \verb|\subsubsection{}|. Coloque o t\'itulo entre \verb|{}|. A classe \textit{article} n\~ao aceita cap\'itulo, somente \textit{report} ou \textit{book} aceitam cap\'itulos.
+
+\begin{ex}
+Exemplo de cap\'itulo
+\footnote{OBS: A palavra \textit{seção} foi escrita na forma padrão do \LaTeX\ para evitar conflitos de caracteres para o padrão ISO e UTF8. Mais informações em \href{http://latexbr.blogspot.com.br/2011/02/acentos-e-caracteres-especiais.html}{Acentos e caracteres especiais}.}
+
+\begin{verbatim}
+\chapter{Primeiro Capitulo}
+
+\section{Primeira Se\c c\~ao}
+\end{verbatim} 
+
+\end{ex}
+
+\subsubsection{Sum\'ario}
+
+No caso de documentos com cap\'itulos, para mostrar o sum\'ario digite \verb|\tableofcontents| dentro de \verb|\begin{document}|.
+                                                   
+\subsection{Formatando o texto}
+
+Os comandos b\'asicos s\~ao: \verb|\textit{italico}|, \verb|\textbf{negrito}| e \verb|\underline{sublinhado}|. Para que apare\c ca caracteres especiais no documento digite, por exemplo:\\
+\verb|\$|, \verb|\%|, \verb|\&|. Uma linha \'e quebrada com \verb|\\|, e uma p\'agina com \verb|\newpage|.
+
+\subsection{Refer\^encias}
+
+Uma refer\^encia \'e usada a partir de uma \verb|\label{}| com o comando \verb|\ref{}|.
+
+\begin{ex}
+Exemplo de refer\^encia
+
+\begin{verbatim}
+\subsection{Outra Se\c c\~ao}
+\label{sec:nome_da_secao}
+
+Veja o exemplo na se\c c\~ao \ref{sec:nome_da_secao}
+\end{verbatim}
+\end{ex}
+
+\section{Conte\'udo}
+
+\subsection{Equa\c c\~oes}
+
+Para escrever uma equa\c c\~ao matem\'atica numa linha digite entre \verb|$ $|.
+
+\begin{ex}
+Equa\c c\~ao na linha de texto.
+\begin{verbatim}
+Dado $f(x) = ax^2 + bx + c$, as raizes s\~ao obtidas fazendo $f(x) = 0$.
+\end{verbatim} 
+
+Dado $f(x) = ax^2 + bx + c$, as raizes s\~ao obtidas fazendo $f(x) = 0$.
+\end{ex}
+
+Para escrever uma equa\c c\~ao destacada digite entre \verb|\[ \]|.
+
+\begin{ex}
+Equa\c c\~ao destacada do texto.
+
+\begin{verbatim}
+\[
+x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+\]
+\end{verbatim} 
+
+\[
+x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+\]
+
+\end{ex}
+
+\begin{ex}
+A equa\c c\~ao a seguir \'e composta de m\'ultiplas linhas. Requer o pacote \verb|\usepackage{amsmath}|.
+
+\begin{verbatim}
+\[
+\begin{gathered}
+  5x - 15 = 0 \hfill \\
+  5x = 15 \hfill \\
+  x = 3 \hfill \\
+\end{gathered}
+\]
+\end{verbatim} 
+
+\[
+\begin{gathered}
+  5x - 15 = 0 \hfill \\
+  5x = 15 \hfill \\
+  x = 3 \hfill \\
+\end{gathered}
+\]
+\end{ex}
+
+\begin{ex}
+Para representar os n\'umeros inteiros, reais, complexos carregue o pacote \verb|\usepackage{amsfonts}|.
+
+\begin{tabular}{lll}
+  N\'umeros inteiros:  & $\mathbb{Z}$ & \verb|$\mathbb{Z}$| \\
+  N\'umeros reais:     & $\mathbb{R}$ & \verb|$\mathbb{R}$| \\
+  N\'umeros complexos: & $\mathbb{C}$ & \verb|$\mathbb{C}$| \\
+\end{tabular}
+
+\end{ex}
+
+\begin{ex}
+Alguns s\'imbolos matem\'aticos requer o pacote \verb|\usepackage{amssymb}|.
+
+\verb|$\nexists, \leqslant, \varnothing$|
+
+$\nexists \qquad \leqslant \qquad \varnothing$
+\end{ex}
+
+\begin{ex}
+Equa\c c\~ao com numera\c c\~ao
+
+\begin{verbatim}
+\begin{equation}
+\int_a^b f(x)dx = \mathop {\lim }\limits_{n \to \infty }
+  \sum_{i = 1}^n f(x_i^*) \Delta x
+\end{equation}
+\end{verbatim} 
+
+\begin{equation}
+\int_a^b f(x)dx = \mathop {\lim }\limits_{n \to \infty }  
+\sum_{i = 1}^n f(x_i^*) \Delta x
+\end{equation}
+
+\end{ex}
+
+\begin{ex}
+Equa\c c\~ao sem numera\c c\~ao
+
+\begin{verbatim}
+\begin{equation*}
+\int_r F(r) dr = \int_a^b F(r(t)).r'(t) dt
+\end{equation*}
+\end{verbatim} 
+
+\begin{equation*}
+\int_r F(r) dr = \int_a^b F(r(t)).r'(t) dt
+\end{equation*}
+
+\end{ex}
+
+Mais informa\c c\~oes em \href{http://mirror.ctan.org/info/math/voss/mathmode/Mathmode.pdf}{mathmode}.
+
+\subsection{Nota de rodap\'e}
+
+Para inserir uma nota de rodap\'e digite \verb|\footnote{Nota de rodap\'e}|\footnote{Nota de rodap\'e}.
+
+\newpage
+
+\subsection{Figuras}
+
+Carregue o pacote \verb|graphicx| e use a seguinte sintaxe:
+
+\begin{verbatim}
+\begin{figure}[h]
+\centering
+\includegraphics[width=5cm]{figuras/abelha}
+\caption{Exemplo de figura JPG.}
+\label{fig:abelha}
+\end{figure}
+\end{verbatim}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=5cm]{figuras/abelha}
+  \caption{Exemplo de figura JPG.}
+  \label{fig:abelha}
+\end{figure}
+
+\begin{verbatim}
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}
+    \draw[fill=yellow] (0,0) circle (1);
+    \draw[blue,->] (0,0) -- (45:1);
+    \begin{scope}[scale=.5,shift={(10,0)}]
+      \draw[blue,domain=-2*pi:2*pi,samples=200] plot (\x,{sin(\x r)});
+    \end{scope}
+  \end{tikzpicture}
+  \caption{Exemplo de figura Tikz.}
+  \label{fig:tikz}
+\end{figure} 
+\end{verbatim} 
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}
+    \draw[fill=yellow] (0,0) circle (1);
+    \draw[blue,->] (0,0) -- (45:1);
+    \begin{scope}[scale=.5,shift={(10,0)}]
+      \draw[blue,domain=-2*pi:2*pi,samples=200] plot (\x,{sin(\x r)});
+    \end{scope}
+  \end{tikzpicture}   
+  \caption{Exemplo de figura Tikz.}
+  \label{fig:tikz}
+\end{figure}
+
+O comando \verb|\includegraphics{}| aceita figuras JPG, PNG e PDF. O \href{http://latexbr.blogspot.com.br/search/label/TikZ}{TikZ} \'e um pacote que desenha figuras vetoriais e gr\'aficos de fun\c c\~oes.
+
+\newpage
+
+\subsection{Tabelas}
+
+Para tabelas \'e recomend\'avel usar o pacote \verb|booktabs|.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{crl}
+    \toprule
+    Nome & Nota & Ano \\
+    \midrule
+    Felipe & 7.5 & 2012\\
+    Ricardo & 2 & 2010\\
+    \bottomrule
+  \end{tabular}
+  \caption{Exemplo de tabela}
+  \label{tab:tabela}
+\end{table}
+
+\begin{verbatim}
+\begin{table}[h]
+  \centering
+  \begin{tabular}{crl}
+    \toprule
+    Nome & Nota & Ano \\
+    \midrule
+    Felipe & 7.5 & 2012\\
+    Ricardo & 2 & 2010\\
+    \bottomrule
+  \end{tabular}
+  \caption{Exemplo de tabela}
+  \label{tab:tabela}
+\end{table}
+\end{verbatim} 
+
+\subsection{Listas}
+
+\begin{ex}
+Para criar uma lista numerada carregue o pacote \verb|enumerate|.
+
+\begin{verbatim}
+\begin{enumerate}
+ \item Primeiro
+ \item Segundo
+ \item Terceiro
+ \end{enumerate} 
+\end{verbatim} 
+
+\begin{enumerate}
+ \item Primeiro
+ \item Segundo
+ \item Terceiro
+\end{enumerate}
+
+\end{ex}
+
+Experimente \verb|\begin{enumerate}[a)]|.
+
+\begin{ex}
+Para listas sem numera\c c\~ao use:
+
+\begin{verbatim}
+\begin{itemize}
+ \item Primeiro
+ \item Segundo
+ \item Terceiro
+\end{itemize}
+\end{verbatim} 
+
+\begin{itemize}
+ \item Primeiro
+ \item Segundo
+ \item Terceiro
+\end{itemize}
+
+\end{ex}
+
+\newpage
+
+\section{Bibliografia com \BibTeX}
+
+\subsection{Usando \BibTeX}
+
+Para usar a \BibTeX\ digite no final do documento, antes de \verb|\end{document}|.
+
+\begin{verbatim}
+\bibliographystyle{abbrv}
+\bibliography{refs}
+\end{verbatim}
+
+\subsection{Adicionando itens a bibliografia}
+
+Pesquise as refer\^encias em \href{http://scholar.google.com.br/schhp?hl=pt-BR}{Google Acad\^emicos}. Clique em Configura\c c\~oes (lado superior direito da tela) e marque 'Mostre links para importar cita\c c\~oes para o \BibTeX'. A partir dai pesquise a refer\^encia e clique em 'Importe para o \BibTeX'.
+
+\'E necess\'ario que a refer\^encia seja citada no documento, para isso digite \verb|\cite{}|. \cite{oetiker}, \cite{lamport}, \cite{mittelbach}, \cite{tantau}
+Veja em \textit{refs.bib} algumas refer\^encias.
+
+Para compilar com refer\^encia abra o terminal e digite:
+
+\begin{verbatim}
+pdflatex exemplo
+bibtex exemplo
+pdflatex exemplo
+pdflatex exemplo
+\end{verbatim} 
+
+Veja também \href{http://latexbr.blogspot.com.br/2012/07/cartao-com-principais-comandos-do-latex.html}{latexrefcard}.
+
+\href{http://latexbr.blogspot.com.br/}{LaTeXBR}
+
+\bibliographystyle{abbrv}
+\bibliography{refs}
+
+\end{document}

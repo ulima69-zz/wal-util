@@ -1,0 +1,737 @@
+\documentclass[10pt,a4paper,landscape]{article}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+
+% Para gerar este documento execute
+%  pdflatex latexrefcard.tex
+
+% 2012-06
+% Traduzido e adaptado para o Portugues por Regis Santos \copyright\ 2012
+% a partir do original de Winston Chang \copyright\ 2012.
+
+% http://www.stdout.org/$\sim$winston/latex/
+
+% Para fazer:
+% \listoffigures \listoftables
+% \setcounter{secnumdepth}{0}
+
+
+% As margens est\~ao configuradas para .5 polegada se usar letter paper,
+% e para 1 cm se usar papel A4.
+% Se usar outro papel diferente, use 1 cm de margem por padr\~ao.
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+	{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+	{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	}
+
+% Desativa cabecalho e rodape
+\pagestyle{empty}
+ 
+
+% Redefine comandos de se\c c\~ao para usar menos espa\c co
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+
+% Define comando BibTeX
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% N\~ao imprime numero de se\c c\~ao
+\setcounter{secnumdepth}{0}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+
+% -----------------------------------------------------------------------
+
+\begin{document}
+
+\raggedright
+\footnotesize
+\begin{multicols}{3}
+
+
+% Parametros para multicolunas
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+\begin{center}
+     \Large{\textbf{\LaTeXe\ Principais Comandos}} \\
+\end{center}
+
+\section{Classes de documentos}
+\begin{tabular}{@{}ll@{}}
+\verb!book!    & Padr\~ao s\~ao dois lados. \\
+\verb!report!  & Sem divis\~ao por \verb!\part!. \\
+\verb!article! & Sem divis\~ao \verb!\part! ou \verb!\chapter!. \\
+\verb!letter!  &  \\
+\verb!slides!  & Fonte larga sans-serif.
+\end{tabular}
+
+Usado para iniciar um documento:
+\verb!\documentclass{!\textit{classe}\verb!}!.  Use
+\verb!\begin{document}! para iniciar e \verb!\end{document}! para 
+finalizar o documento.
+
+\subsection{Op\c c\~oes comuns para \texttt{documentclass}}
+\newlength{\MyLen}
+\settowidth{\MyLen}{\texttt{letterpaper}/\texttt{a4paper} \ }
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\texttt{10pt}/\texttt{11pt}/\texttt{12pt} & Tamanho da fonte. \\
+\texttt{letterpaper}/\texttt{a4paper} & Tamanho do papel. \\
+\texttt{twocolumn} & Usa duas colunas. \\
+\texttt{twoside}   & Define margens para frente e verso. \\
+\texttt{landscape} & Orienta\c c\~ao paisagem. Pode usar 
+                     \texttt{dvips -t landscape}. \\
+\texttt{draft}     & Linhas com espa\c camento duplo.
+\end{tabular}
+
+Uso:
+\verb!\documentclass[!\textit{opt,opt}\verb!]{!\textit{classe}\verb!}!.
+
+
+\subsection{Pacotes}
+\settowidth{\MyLen}{\texttt{multicol} }
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+%\begin{tabular}{@{}ll@{}}
+\texttt{fullpage}  &  Usa 1 polegada de margem. \\
+\texttt{anysize}   &  Define margens: \verb!\marginsize{!\textit{l}%
+                        \verb!}{!\textit{r}\verb!}{!\textit{t}%
+                        \verb!}{!\textit{b}\verb!}!.            \\
+\texttt{multicol}  &  Usa $n$ colunas: 
+                        \verb!\begin{multicols}{!$n$\verb!}!.   \\
+\texttt{latexsym}  &  Usa s\'imbolos \LaTeX. \\
+\texttt{graphicx}  &  Exibe imagem:
+                        \verb!\includegraphics[width=!%
+                        \textit{x}\verb!]{!%
+                        \textit{arquivo}\verb!}!. \\
+\texttt{url}       & Insere URL: \verb!\url{!%
+                        \textit{http://\ldots}%
+                        \verb!}!.
+\end{tabular}
+
+Use antes de \verb!\begin{document}!. 
+Uso: \verb!\usepackage{!\textit{pacote}\verb!}!
+
+
+\subsection{T\'itulo}
+\settowidth{\MyLen}{\texttt{.author.text.} }
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\verb!\author{!\textit{texto}\verb!}! & Autor do documento. \\
+\verb!\title{!\textit{texto}\verb!}!  & T\'itulo do documento. \\
+\verb!\date{!\textit{texto}\verb!}!   & Data. Ex: \verb!\date{\today}!,\verb!\date{}! \\
+\end{tabular}
+
+Esses comandos vem antes de \verb!\begin{document}!. A declara\c c\~ao
+\verb!\maketitle! retorna o t\'itulo no topo do documento.
+
+\subsection{Miscel\^anea}
+\settowidth{\MyLen}{\texttt{.pagestyle.empty.} }
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\verb!\pagestyle{empty}!     &   Cabe\c calho e rodap\'e vazio
+                                 e p\'agina sem numera\c c\~ao. \\
+\verb!\tableofcontents!      &   Adiciona o sum\'ario. \\
+
+\end{tabular}
+
+
+
+\section{Estrutura do documento}
+\begin{multicols}{2}
+\verb!\part{!\textit{t\'itulo}\verb!}!  \\
+\verb!\chapter{!\textit{t\'itulo}\verb!}!  \\
+\verb!\section{!\textit{t\'itulo}\verb!}!  \\
+\verb!\subsection{!\textit{t\'itulo}\verb!}!  \\
+\verb!\subsubsection{!\textit{t\'itulo}\verb!}!  \\
+\verb!\paragraph{!\textit{t\'itulo}\verb!}!  \\
+\verb!\subparagraph{!\textit{t\'itulo}\verb!}!
+\end{multicols}
+{\raggedright
+Usando \verb!\setcounter{secnumdepth}{!$x$\verb!}! suprime n\'umeros dos subn\'iveis $>x$, onde \verb!chapter! \'e n\'ivel 0.
+Use \texttt{*}, numa \verb!\section*{!\textit{t\'itulo}\verb!}!,
+para n\~ao numerar um item particular---este item n\~ao ir\'a aparecer no sum\'ario.
+}
+
+\subsection{Ambientes de texto}
+\settowidth{\MyLen}{\texttt{.begin.quotation.}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\verb!\begin{comment}!    &  Coment\'ario (n\~ao imprim\'ivel). Requer o pacote \texttt{verbatim}. \\
+\verb!\begin{quote}!      &  Indenta um bloco de cita\c c\~ao. \\
+\verb!\begin{quotation}!  &  \texttt{quote} com par\'agrafo recuado. \\
+\verb!\begin{verse}!      &  Bloco de cita\c c\~ao para versos.
+\end{tabular}
+
+\subsection{Listas}
+\settowidth{\MyLen}{\texttt{.begin.description.}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\verb!\begin{enumerate}!        &  Lista numerada. \\
+\verb!\begin{itemize}!          &  Lista com marca\c c\~ao. \\
+\verb!\begin{description}!      &  Lista com descri\c c\~ao. \\
+\verb!\item! \textit{texto}      &  Adiciona um item. \\
+\verb!\item[!\textit{x}\verb!]! \textit{texto}
+                                &  Use \textit{x} em vez de marca\c c\~ao normal ou n\'umero. Necess\'ario para descri\c c\~ao.\\
+\end{tabular}
+
+
+
+
+\subsection{Refer\^encias}
+\settowidth{\MyLen}{\texttt{.pageref.marker..}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\verb!\label{!\textit{marcador}\verb!}!   &  Define uma marca para refer\^encia cruzada, 
+                          geralmente \'e da forma \verb!\label{sec:item}!. \\
+\verb!\ref{!\textit{marcador}\verb!}! &  Retorna n\'umero da se\c c\~ao do marcador. \\
+\verb!\pageref{!\textit{marcador}\verb!}! &  Retorna n\'umero da p\'agina do marcador. \\
+\verb!\footnote{!\textit{texto}\verb!}!  &  Imprime nota de rodap\'e na parte inferior da p\'agina. \\
+\end{tabular}
+
+
+\subsection{Objetos flutuantes}
+\settowidth{\MyLen}{\texttt{.begin.equation..place.}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\verb!\begin{table}[!\textit{lugar}\verb!]!     &  Adiciona tabela numerada. \\
+\verb!\begin{figure}[!\textit{lugar}\verb!]!    &  Adiciona figura numerada. \\
+\verb!\begin{equation}[!\textit{lugar}\verb!]!  &  Adiciona equa\c c\~ao numerada. \\
+\verb!\caption{!\textit{texto}\verb!}!           & Legenda para o objeto. \\
+\end{tabular}
+
+O \textit{lugar} \'e uma lista de posi\c c\~oes v\'alidas para o objeto.  \texttt{t}=topo,
+\texttt{h}=aqui, \texttt{b}=embaixo, \texttt{p}=p\'agina separada, \texttt{!}=neste lugar mesmo que fique feio. Legendas e etiquetas de marcadores devem estar dentro do ambiente.
+
+%---------------------------------------------------------------------------
+
+\section{Propriedades do texto}
+
+\subsection{Fonte}
+\newcommand{\FontCmd}[3]{\PBS\verb!\#1{!\textit{text}\verb!}!  \> %
+                         \verb!{\#2 !\textit{text}\verb!}! \> %
+                         \#1{#3}}
+\begin{tabular}{@{}l@{}l@{}l@{}}
+\textit{Comando} & \textit{Declara\c c\~ao} & \textit{Efeito} \\
+\verb!\textrm{!\textit{texto}\verb!}!                    & %
+        \verb!{\rmfamily !\textit{texto}\verb!}!               & %
+        \textrm{Fam\'ilia Romana} \\
+\verb!\textsf{!\textit{texto}\verb!}!                    & %
+        \verb!{\sffamily !\textit{texto}\verb!}!               & %
+        \textsf{Fam\'ilia Sem serifa} \\
+\verb!\texttt{!\textit{texto}\verb!}!                    & %
+        \verb!{\ttfamily !\textit{texto}\verb!}!               & %
+        \texttt{Fam\'ilia M\'aquina de escrever} \\
+\verb!\textmd{!\textit{texto}\verb!}!                    & %
+        \verb!{\mdseries !\textit{texto}\verb!}!               & %
+        \textmd{S\'erie m\'edia} \\
+\verb!\textbf{!\textit{texto}\verb!}!                    & %
+        \verb!{\bfseries !\textit{texto}\verb!}!               & %
+        \textbf{S\'erie negrito} \\
+\verb!\textup{!\textit{texto}\verb!}!                    & %
+        \verb!{\upshape !\textit{texto}\verb!}!               & %
+        \textup{Forma em p\'e} \\
+\verb!\textit{!\textit{texto}\verb!}!                    & %
+        \verb!{\itshape !\textit{texto}\verb!}!               & %
+        \textit{Forma it\'alica} \\
+\verb!\textsl{!\textit{texto}\verb!}!                    & %
+        \verb!{\slshape !\textit{texto}\verb!}!               & %
+        \textsl{Forma inclinada} \\
+\verb!\textsc{!\textit{texto}\verb!}!                    & %
+        \verb!{\scshape !\textit{texto}\verb!}!               & %
+        \textsc{Forma caixa alta} \\
+\verb!\emph{!\textit{texto}\verb!}!                      & %
+        \verb!{\em !\textit{texto}\verb!}!               & %
+        \emph{Enfatizado} \\
+\verb!\textnormal{!\textit{texto}\verb!}!                & %
+        \verb!{\normalfont !\textit{texto}\verb!}!       & %
+        \textnormal{Fonte do documento} \\
+\verb!\underline{!\textit{texto}\verb!}!                 & %
+                                                        & %
+        \underline{Sublinhado}
+\end{tabular}
+
+O comando da forma (t\textit{tt}t) \verb!(t\textit{tt}t)! lida melhor com espa\c camento do que da forma (t{\itshape tt}t) \verb!(t{\itshape tt}t)!.
+
+\subsection{Font size}
+\setlength{\columnsep}{14pt}
+\begin{multicols}{2}
+\begin{tabbing}
+\verb!\footnotesize!          \= \kill
+\verb!\tiny!                  \>  \tiny{minusculo} \\
+\verb!\scriptsize!            \>  \scriptsize{muito pequena} \\
+\verb!\footnotesize!          \>  \footnotesize{nota de rodape} \\
+\verb!\small!                 \>  \small{pequena} \\
+\verb!\normalsize!            \>  \normalsize{normal} \\
+\verb!\large!                 \>  \large{grande} \\
+\verb!\Large!                 \=  \Large{maior} \\
+\verb!\LARGE!                 \>  \LARGE{muito maior} \\
+\verb!\huge!                  \>  \huge{enorme} \\
+\verb!\Huge!                  \>  \Huge{gigante}
+\end{tabbing}
+\end{multicols}
+\setlength{\columnsep}{1pt}
+
+Essas declara\c c\~oes devem ser utilizadas da forma 
+\verb!{\small! \ldots\verb!}!, ou sem as chaves para aplicar em todo o documento.
+
+
+\subsection{Texto Verbatim}
+
+\settowidth{\MyLen}{\texttt{.begin.verbatim..} }
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\verb@\begin{verbatim}@ & Ambiente verbatim. \\
+\verb@\begin{verbatim*}@ & Espa\c cos s\~ao mostrados com \verb*@ @. \\
+\verb@\verb!texto!@ & Texto entre os caracteres delimitadores (neste caso %
+                      `\texttt{!}', pode-se usar \texttt{|} tamb\'em).
+\end{tabular}
+
+
+\subsection{Alinhamento}
+\begin{tabular}{@{}ll@{}}
+\textit{Ambiente}  &  \textit{Declara\c c\~ao}  \\
+\verb!\begin{center}!      & \verb!\centering!  \\
+\verb!\begin{flushleft}!  & \verb!\raggedright! \\
+\verb!\begin{flushright}! & \verb!\raggedleft!  \\
+\end{tabular}
+
+\subsection{Miscel\^anea}
+\verb!\linespread{!$x$\verb!}! altera o espa\c co entre linhas por um m\'ultiplo de $x$.
+
+
+
+
+
+\section{S\'imbolos modo texto}
+
+\subsection{S\'imbolos}
+\begin{tabular}{@{}l@{\hspace{1em}}l@{\hspace{2em}}l@{\hspace{1em}}l@{\hspace{2em}}l@{\hspace{1em}}l@{\hspace{2em}}l@{\hspace{1em}}l@{}}
+\&              &  \verb!\&! &
+\_              &  \verb!\_! &
+\ldots          &  \verb!\ldots! &
+\textbullet     &  \verb!\textbullet! \\
+\$              &  \verb!\$! &
+\^{}            &  \verb!\^{}! &
+\textbar        &  \verb!\textbar! &
+\textbackslash  &  \verb!\textbackslash! \\
+\%              &  \verb!\%! &
+\~{}            &  \verb!\~{}! &
+\#              &  \verb!\#! &
+\S              &  \verb!\S! \\
+\end{tabular}
+
+\subsection{Acentos}
+\begin{tabular}{@{}l@{\ }l|l@{\ }l|l@{\ }l|l@{\ }l|l@{\ }l@{}}
+\`o   & \verb!\`o! &
+\'o   & \verb!\'o! &
+\^o   & \verb!\^o! &
+\~o   & \verb!\~o! &
+\=o   & \verb!\=o! \\
+\.o   & \verb!\.o! &
+\"o   & \verb!\"o! &
+\c o  & \verb!\c o! &
+\v o  & \verb!\v o! &
+\H o  & \verb!\H o! \\
+\c c  & \verb!\c c! &
+\d o  & \verb!\d o! &
+\b o  & \verb!\b o! &
+\t oo & \verb!\t oo! &
+\oe   & \verb!\oe! \\
+\OE   & \verb!\OE! &
+\ae   & \verb!\ae! &
+\AE   & \verb!\AE! &
+\aa   & \verb!\aa! &
+\AA   & \verb!\AA! \\
+\o    & \verb!\o! &
+\O    & \verb!\O! &
+\l    & \verb!\l! &
+\L    & \verb!\L! &
+\i    & \verb!\i! \\
+\j    & \verb!\j! &
+!`    & \verb!~`! &
+?`    & \verb!?`! &
+\end{tabular}
+
+
+\subsection{Delimitadores}
+\begin{tabular}{@{}l@{\ }ll@{\ }ll@{\ }ll@{\ }ll@{\ }ll@{\ }l@{}}
+`       & \verb!`!  &
+``      & \verb!``! &
+\{      & \verb!\{! &
+\lbrack & \verb![! &
+(       & \verb!(! &
+\textless  &  \verb!\textless! \\
+'       & \verb!'!  &
+''      & \verb!''! &
+\}      & \verb!\}! &
+\rbrack & \verb!]! &
+)       & \verb!)! &
+\textgreater  &  \verb!\textgreater! \\
+\end{tabular}
+
+\subsection{Tra\c cos}
+\begin{tabular}{@{}llll@{}}
+\textit{Nome} & \textit{Fonte} & \textit{Exemplo} & \textit{Uso} \\
+h\'ifen  & \verb!-!   & Raio-x          & Em textos. \\
+en-tra\c co & \verb!--!  & 1--5           & Entre n\'umeros. \\
+em-tra\c co & \verb!---! & Sim---ou n\~ao?    & Pontua\c c\~ao.
+\end{tabular}
+
+
+\subsection{Quebra de linha e de p\'agina}
+\settowidth{\MyLen}{\texttt{.pagebreak} }
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\verb!\\!          &  Inicia uma nova linha sem novo par\'agrafo.  \\
+\verb!\\*!         &  Proibe quebra de p\'agina ap\'os quebra de linha. \\
+\verb!\kill!       &  N\~ao imprime linha atual. \\
+\verb!\pagebreak!  &  Inicia nova p\'agina. \\
+\verb!\noindent!   &  N\~ao indenta linha atual.
+\end{tabular}
+
+
+\subsection{Miscel\^anea}
+\settowidth{\MyLen}{\texttt{.rule.w..h.} }
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\verb!\today!  &  \today. \\
+\verb!$\sim$!  &  Imprime $\sim$ em vez de \verb!\~{}!, o que torna \~{}. \\
+\verb!~!       &  Espa\c co, n\~ao permite quebra de linha (\verb!W.J.~Clinton!). \\
+\verb!\@.!     &  Indica que o \verb!.! no final de senten\c ca seguindo uma letra mai\'uscula. \\
+\verb!\hspace{!$l$\verb!}! & Espa\c co horizontal de comprimento $l$
+                                (Ex: $l=\mathtt{20pt}$). \\
+\verb!\vspace{!$l$\verb!}! & Espa\c co vertical de comprimento $l$. \\
+\verb!\rule{!$w$\verb!}{!$h$\verb!}! & Linha de largura $w$ e altura $h$. \\
+\end{tabular}
+
+
+
+\section{Ambientes de tabela}
+
+\subsection{Ambiente \texttt{tabbing}}
+\begin{tabular}{@{}l@{\hspace{1.5ex}}l@{\hspace{10ex}}l@{\hspace{1.5ex}}l@{}}
+\verb!\=!  &   Define parada de tabula\c c\~ao. &
+\verb!\>!  &   Vai para parada de tab.
+\end{tabular}
+
+Tabula\c c\~ao pode ser definida com linhas ``invis\'iveis'' com \verb!\kill! no final da linha.  Normalmente \'e usado \verb!\\! para separar linhas.
+
+
+\subsection{Ambiente \texttt{tabular}}
+\verb!\begin{array}[!\textit{pos}\verb!]{!\textit{cols}\verb!}!   \\
+\verb!\begin{tabular}[!\textit{pos}\verb!]{!\textit{cols}\verb!}! \\
+\verb!\begin{tabular*}{!\textit{largura}\verb!}[!\textit{pos}\verb!]{!\textit{cols}\verb!}!
+
+
+\subsubsection{\texttt{tabular} especifica\c c\~ao da coluna}
+\settowidth{\MyLen}{\texttt{p}\{\textit{width}\} \ }
+\begin{tabular}{@{}p{\the\MyLen}@{}p{\linewidth-\the\MyLen}@{}}
+\texttt{l}    &   Coluna alinhada a esquerda.  \\
+\texttt{c}    &   Coluna centralizada.  \\
+\texttt{r}    &   Coluna alinhada a direita. \\
+\verb!p{!\textit{width}\verb!}!  &  Mesmo que %
+                              \verb!\parbox[t]{!\textit{largura}\verb!}!. \\ 
+\verb!@{!\textit{decl}\verb!}!   &  Insira \textit{decl} em vez de 
+                                    espa\c co entre colunas. \\
+\verb!|!      &   Insere uma linha vertical entre colunas. 
+\end{tabular}
+
+
+\subsubsection{\texttt{tabular} elementos}
+\settowidth{\MyLen}{\texttt{.cline.x-y..}}
+\begin{tabular}{@{}p{\the\MyLen}@{}p{\linewidth-\the\MyLen}@{}}
+\verb!\hline!           &  Linha horizontal entre linhas.  \\
+\verb!\cline{!$x$\verb!-!$y$\verb!}!  &
+                        Linha horizontal nas colunas de $x$ a $y$. \\
+\verb!\multicolumn{!\textit{n}\verb!}{!\textit{cols}\verb!}{!\textit{texto}\verb!}! \\
+        & Uma c\'elula que se estende por \textit{n} colunas, com \textit{cols} especifica\c c\~ao de colunas.
+\end{tabular}
+
+\section{Modo matem\'atico}
+Para matem\'atica na linha, use \verb!$...$!.
+Para matem\'atica destacada, use \verb!\[...\]! or \verb!\begin{equation}!.
+
+\begin{tabular}{@{}l@{\hspace{1em}}l@{\hspace{2em}}l@{\hspace{1em}}l@{}}
+Superescrito$^{x}$       &
+\verb!^{x}!             &  
+Subescrito$_{x}$         &
+\verb!_{x}!             \\  
+$\frac{x}{y}$           &
+\verb!\frac{x}{y}!      &  
+$\sum_{k=1}^n$          &
+\verb!\sum_{k=1}^n!     \\  
+$\sqrt[n]{x}$           &
+\verb!\sqrt[n]{x}!      &  
+$\prod_{k=1}^n$         &
+\verb!\prod_{k=1}^n!    \\ 
+\end{tabular}
+
+\subsection{S\'imbolos modo matem\'atico}
+
+\begin{tabular}{@{}l@{\hspace{1ex}}l@{\hspace{1em}}l@{\hspace{1ex}}l@{\hspace{1em}}l@{\hspace{1ex}} l@{\hspace{1em}}l@{\hspace{1ex}}l@{}}
+$\leq$          &  \verb!\leq!  &
+$\geq$          &  \verb!\geq!  &
+$\neq$          &  \verb!\neq!  &
+$\approx$       &  \verb!\approx!  \\
+$\times$        &  \verb!\times!  &
+$\div$          &  \verb!\div!  &
+$\pm$           & \verb!\pm!  &
+$\cdot$         &  \verb!\cdot!  \\
+$^{\circ}$      & \verb!^{\circ}! &
+$\circ$         &  \verb!\circ!  &
+$\prime$        & \verb!\prime!  &
+$\cdots$        &  \verb!\cdots!  \\
+$\infty$        & \verb!\infty!  &
+$\neg$          & \verb!\neg!  &
+$\wedge$        & \verb!\wedge!  &
+$\vee$          & \verb!\vee!  \\
+$\supset$       & \verb!\supset!  &
+$\forall$       & \verb!\forall!  &
+$\in$           & \verb!\in!  &
+$\rightarrow$   &  \verb!\rightarrow! \\
+$\subset$       & \verb!\subset!  &
+$\exists$       & \verb!\exists!  &
+$\notin$        & \verb!\notin!  &
+$\Rightarrow$   &  \verb!\Rightarrow! \\
+$\cup$          & \verb!\cup!  &
+$\cap$          & \verb!\cap!  &
+$\mid$          & \verb!\mid!  &
+$\Leftrightarrow$   &  \verb!\Leftrightarrow! \\
+$\dot a$        & \verb!\dot a!  &
+$\hat a$        & \verb!\hat a!  &
+$\bar a$        & \verb!\bar a!  &
+$\tilde a$      & \verb!\tilde a!  \\
+
+$\alpha$        &  \verb!\alpha!  &
+$\beta$         &  \verb!\beta!  &
+$\gamma$        &  \verb!\gamma!  &
+$\delta$        &  \verb!\delta!  \\
+$\epsilon$      &  \verb!\epsilon!  &
+$\zeta$         &  \verb!\zeta!  &
+$\eta$          &  \verb!\eta!  &
+$\varepsilon$   &  \verb!\varepsilon!  \\
+$\theta$        &  \verb!\theta!  &
+$\iota$         &  \verb!\iota!  &
+$\kappa$        &  \verb!\kappa!  &
+$\vartheta$     &  \verb!\vartheta!  \\
+$\lambda$       &  \verb!\lambda!  &
+$\mu$           &  \verb!\mu!  &
+$\nu$           &  \verb!\nu!  &
+$\xi$           &  \verb!\xi!  \\
+$\pi$           &  \verb!\pi!  &
+$\rho$          &  \verb!\rho!  &
+$\sigma$        &  \verb!\sigma!  &
+$\tau$          &  \verb!\tau!  \\
+$\upsilon$      &  \verb!\upsilon!  &
+$\phi$          &  \verb!\phi!  &
+$\chi$          &  \verb!\chi!  &
+$\psi$          &  \verb!\psi!  \\
+$\omega$        &  \verb!\omega!  &
+$\Gamma$        &  \verb!\Gamma!  &
+$\Delta$        &  \verb!\Delta!  &
+$\Theta$        &  \verb!\Theta!  \\
+$\Lambda$       &  \verb!\Lambda!  &
+$\Xi$           &  \verb!\Xi!  &
+$\Pi$           &  \verb!\Pi!  &
+$\Sigma$        &  \verb!\Sigma!  \\
+$\Upsilon$      &  \verb!\Upsilon!  &
+$\Phi$          &  \verb!\Phi!  &
+$\Psi$          &  \verb!\Psi!  &
+$\Omega$        &  \verb!\Omega!  
+\end{tabular}
+\footnotesize
+
+\section{Bibliografia e cita\c c\~oes}
+Enquanto usar \BibTeX, voc\^e vai precisar rodar \texttt{latex}, \texttt{bibtex},
+e \texttt{latex} mais duas vezes para resolver as depend\^encias.
+
+\subsection{Tipos de cita\c c\~oes}
+\settowidth{\MyLen}{\texttt{.shortciteN.key..}}
+\begin{tabular}{@{}p{\the\MyLen}@{}p{\linewidth-\the\MyLen}@{}}
+\verb!\cite{!\textit{chave}\verb!}!       &
+        Lista autor completo e ano. (Watson e Crick 1953) \\
+\verb!\citeA{!\textit{chave}\verb!}!      &
+        Lista autor completo. (Watson and Crick) \\
+\verb!\citeN{!\textit{chave}\verb!}!      &
+        Lista autor completo e ano. Watson e Crick (1953) \\
+\verb!\shortcite{!\textit{chave}\verb!}!  &
+        Lista autor abreviado e ano. ? \\
+\verb!\shortciteA{!\textit{chave}\verb!}! &
+        Lista autor abreviado. ? \\
+\verb!\shortciteN{!\textit{chave}\verb!}! &
+        Lista autor abreviado e ano. ? \\
+\verb!\citeyear{!\textit{chave}\verb!}!   &
+        Cita somente o ano. (1953) \\
+\end{tabular}
+
+Todos acima tem uma varia\c c\~ao \texttt{NP} sem par\^enteses;
+Ex. \verb!\citeNP!.
+
+
+\subsection{\BibTeX\ tipos de entrada}
+\settowidth{\MyLen}{\texttt{.mastersthesis.}}
+\begin{tabular}{@{}p{\the\MyLen}@{}p{\linewidth-\the\MyLen}@{}}
+\verb!@article!         &  Artigo de jornal ou revista. \\
+\verb!@book!            &  Livro com editora. \\
+\verb!@booklet!         &  Livro sem editora. \\
+\verb!@conference!      &  Artigo em atas de confer\^encia. \\
+\verb!@inbook!          &  Uma parte de um livro e/ou intervalo de p\'aginas. \\
+\verb!@incollection!    &  Uma parte de um livro com seu pr\'oprio t\'itulo. \\
+\verb!@misc!            &  Se nada mais se encaixar. \\
+\verb!@phdthesis!       &  Tese PhD. \\
+\verb!@proceedings!     &  Procedimentos de uma confer\^encia. \\
+\verb!@techreport!      &  Reportagem t\'ecnica, usualmente numerada em s\'erie. \\
+\verb!@unpublished!     &  In\'edito. \\
+\end{tabular}
+
+\subsection{\BibTeX\ campos}
+\settowidth{\MyLen}{\texttt{organization.}}
+\begin{tabular}{@{}p{\the\MyLen}@{}p{\linewidth-\the\MyLen}@{}}
+\verb!address!         &  Endere\c co da editora.  \\
+\verb!author!           &  Nome dos autores. \\
+\verb!booktitle!        &  T\'itulo do livro quando parte dele \'e citado. \\
+\verb!chapter!          &  Cap\'itulo ou n\'umero da se\c c\~ao. \\
+\verb!edition!          &  Edi\c c\~ao do livro. \\
+\verb!editor!           &  Nome da editora. \\
+\verb!institution!      &  Institui\c c\~ao patrocinadora do relat\'orio t\'ecnico. \\
+\verb!journal!          &  Nome do jornal. \\
+\verb!key!              &  Usado para refer\^encia cruzada quando n\~ao h\'a autor. \\
+\verb!month!            &  M\^es de publica\c c\~ao. Use abrevia\c c\~ao de 3 letras. \\
+\verb!note!             &  Qualquer informa\c c\~ao adicional. \\
+\verb!number!           &  N\'umero do jornal ou revista. \\
+\verb!organization!     &  Organiza\c c\~ao que patrocina a confer\^encia. \\
+\verb!pages!            &  Intervalo de p\'aginas (\verb!2,6,9--12!). \\
+\verb!publisher!        &  Nome da editora. \\
+\verb!school!           &  Nome da escola (para teses). \\
+\verb!series!           &  Nome da s\'erie de livros. \\
+\verb!title!            &  T\'itulo do trabalho. \\
+\verb!type!             &  Tipo de relat\'orio t\'ecnico, ex. ``Nota de Pesquisa''. \\
+\verb!volume!           &  Volume do jornal ou livro. \\
+\verb!year!             &  Ano de publica\c c\~ao. \\
+\end{tabular}
+Nem todos os campos precisam ser preenchidos. Veja o exemplo abaixo.
+
+\subsection{\BibTeX\ arquivo de estilos comuns}
+\begin{tabular}{@{}l@{\hspace{1em}}l@{\hspace{3em}}l@{\hspace{1em}}l@{}}
+\verb!abbrv!    &  Padr\~ao &
+\verb!abstract! &  \texttt{alpha} com resumo \\
+\verb!alpha!    &  Padr\~ao &
+\verb!apa!      &  APA \\
+\verb!plain!    &  Padr\~ao &
+\verb!unsrt!    &  N\~ao ordenado \\
+\end{tabular}
+
+O documento \LaTeX\ deve ter as duas linhas seguintes antes de \verb!\end{document}!, onde \verb!refs.bib! \'e o nome do arquivo \BibTeX.
+\begin{verbatim}
+\bibliographystyle{plain}
+\bibliography{refs}
+\end{verbatim}
+
+\subsection{\BibTeX\ exemplo}
+O banco de dados \BibTeX\ fica num arquivo chamado \textit{refs}\texttt{.bib}, que \'e processado com \verb!bibtex refs!. 
+\begin{verbatim}
+@String{N = {Na\-ture}}
+@Article{WC:1953,
+  author  = {James Watson and Francis Crick},
+  title   = {A structure for Deoxyribose Nucleic Acid},
+  journal = N,
+  volume  = {171},
+  pages   = {737},
+  year    = 1953
+}
+\end{verbatim}
+
+\section{Novo comando}
+
+\verb!\newcommand{\nomecomando}[quant][valor]{comandos}!
+
+onde \texttt{quant} \'e a quantidade de vari\'aveis e \texttt{valor} \'e o valor padr\~ao usado na primeira vari\'avel (opcional).
+
+Exemplo:
+
+\verb!\newcommand{\soma}[2][n]{#2_1 + #2_2 + \ldots + #2_{#1}}!
+
+Uso: \verb!\soma[k]{a}! (no modo matem\'atico).
+
+Um exemplo mais simples:
+
+\verb!\newcommand{\sse}{\Leftrightarrow}!
+
+\newcommand{\sse}{\Leftrightarrow}
+
+Uso: \verb!$\sse$! produz $\sse$
+
+
+% Com \usepackage[utf8]{inputenc} ou \usepackage[latin1]{inputenc} (Win) pode-se usar acentuação normalmente.
+
+% verbatim não aceita acentuação.
+\section{Exemplo de documento \LaTeX}
+\begin{verbatim}
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage[cm]{fullpage}
+\title{Modelo}
+\author{Nome}
+\begin{document}
+  \maketitle
+\section{secao}
+  \subsection*{subsecao sem numero}
+texto \textbf{negrito} texto. Um pouco de matematica: $2+3=5$
+  \subsection{subsecao}
+texto \emph{texto enfatizado} texto. \cite{WC:1953}
+descoberta a estrutura do DNA.
+
+\begin{table}[!th]
+  \centering
+  \begin{tabular}{|l|c|r|}
+    \hline
+    primeira  &  linha  &  valor \\
+    segunda &  linha  &  valor \\
+    \hline
+  \end{tabular}
+  \caption{Esta 'e a legenda}
+  \label{ex:tabela}
+\end{table}
+A tabela 'e numerada \ref{ex:tabela}.
+\end{document}
+\end{verbatim}
+
+\rule{0.3\linewidth}{0.25pt}
+\scriptsize
+
+Copyright \copyright\ 2012 Regis Santos
+
+http://latexbr.blogspot.com.br/
+
+original de Winston Chang
+
+http://www.stdout.org/$\sim$winston/latex/
+
+
+\end{multicols}
+\end{document}
