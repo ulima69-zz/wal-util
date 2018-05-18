@@ -1,136 +1,14 @@
-\documentclass{article}
-
-%\usepackage[brazilian]{babel}  \usepackage[T1]{fontenc}
-
-\usepackage[utf8]{inputenc} 
-\usepackage{hyperref}
-
-
-\usepackage{blindtext}
-
-%\title{Apologia de Sócrates} \date{2013-09-01} \author{Platão}
-
-\DeclareUnicodeCharacter{1F701}{asdad}
-\begin{document}
-
-%%% runas 
-
-%%%% http://www.personal.psu.edu/ejp10/blogs/gotunicode/charts/runes.html
-
-%% https://www.wikiwand.com/en/Franks_Casket
-
-%https://www.rpi.edu/dept/arc/training/latex/LaTeX_symbols.pdf
-
-
-Teste 
-
-
-
-
-Da wikipedia
-
-In this chapter we will tackle matters related to input encoding, typesetting diacritics and special characters.
-
-In the following document, we will refer to special characters for all symbols other than the lowercase letters a–z, uppercase letters A-Z, figures 0–9, and English punctuation marks.
-
-Some languages usually need a dedicated input system to ease document writing. This is the case for Arabic, Chinese, Japanese, Korean and others. This specific matter will be tackled in Internationalization.
-
-The rules for producing characters with diacritical marks, such as accents, differ somewhat depending whether you are in text mode, math mode, or the tabbing environment.
-
-
-
-Input encoding
-
-TeX uses ASCII by default. But 128 characters is not enough to support non-english languages. TeX has its own way to do that with commands for every diacritical marking (see Escaped codes). But if we want accents and other special characters to appear directly in the source file, we have to tell TeX that we want to use a different encoding.
-
-There are several encodings available to LaTeX:
-
-    ASCII: the default. Only bare english characters are supported in the source file.
-    ISO-8859-1 (a.k.a. Latin 1): 8-bits encoding. It supports most characters for latin languages, but that's it.
-    UTF-8: a Unicode multi-byte encoding. Supports the complete Unicode specification.
-    Others...
-
-In the following we will assume you want to use UTF-8.
-
-There are some important steps to specify encoding.
-
-    Make sure your text editor decodes the file in UTF-8.
-    Make sure it saves your file in UTF-8. Most text editors do not make the distinction, but some do, such as Notepad++.
-    If you are working in a terminal, make sure it is set to support UTF-8 input and output. Some old Unix terminals may not support UTF-8. PuTTY is not set to use UTF-8 by default, you have to configure it.
-    Tell LaTeX that the source file is UTF-8 encoded.
-    
-    
-    Unicode keyboard input
-Wikipedia-logo.png 	
-
-Wikipedia has related information at Unicode input
-
-Some operating systems provide a keyboard combination to input any Unicode code point, the so-called unicode compose key.
-
-Many X applications (*BSD and GNU/Linux) support the Ctrl+Shift+u combination. A 'u' symbol should appear. Type the code point and press enter or space to actually print the character. Example:
-
-<Ctrl+Shift+u> 20AC <space>
-
-will print the euro character.
-
-Desktop environments like GNOME and KDE may feature a customizable compose key for more memorizable sequences.
-
-Xorg features advanced keyboard layouts with variants that let you enter a lot of characters easily with combination using the aprioriate modifier, like Alt Gr. It highly depends on the selected layout+variant, so we suggest you to play a bit with your keyboard, preceeding every key and dead key with the Alt Gr modifier.
-
-In Windows, you can hold Alt and type a <codepoint> to get a desired character. For example,
-
-<Alt> + 0252
-
-will print the German letter ü.
-
-\begin{verbatim}
-\usepackage[utf8]{inputenc}
-\end{verbatim}
 
 
 \begin{enumerate}  
-	\item grave: \textbackslash\`{}\{o\}  produces \`{o} 
-	\item \textbackslash\'{}\{o\} produces an acute accent,     \'{o} 
-	\item \textbackslash\^{}\{o\} produces a circumflex,     \^{o} 
-
-	%corrigir
-	\item \textbackslash \''{} \{o\} produces an umlaut or dieresis,   \"{o} 
 	
-	
-	\item \textbackslash H \{o\} produces a long Hungarian umlaut    \H{o} 
-		
-		
-	\item \textbackslash\~{}\{o\} produces a tilde,     \~{o} 
-			
-			
-	\item \textbackslash c\{o\} produces a cedilla,     \c{c} 
-				
-				
-	\item \textbackslash=\{o\}  produces a macron accent (a bar over the letter)    \={o}
-					
-					
-	\item \textbackslash b\{o\} produces a bar under the letter    \b{o} 
-						
-						
-	\item \textbackslash .\{o\} produces a dot over the letter    \.{o}
-	
-	
-	\item \textbackslash d\{o\} produces a dot under the letter     \d{o} 
-	
-	\item \textbackslash u\{o\} produces a breve over the letter    \u{o} 
-	
-	\item \textbackslash v\{o\} produces a "v" over the letter    \v{o} 
-	
-	\item \textbackslash t\{o\} produces a "tie" (inverted u) over the two letters    \t{oo} 
-	
-
 \end{enumerate}
 
 \url{https://en.wikibooks.org/wiki/LaTeX/Special_Characters}\\
 \href{https://en.wikibooks.org/wiki/LaTeX/Special_Characters}{Wikibooks home}
 
 \begin{description}
-\item [Ant] \blindtext
+\item [\textasciitilde] \blindtext
 \item [Elephant] \blindtext
 \end{description}
 
@@ -354,5 +232,77 @@ Ellipses (three dots) can be produced by the following commands
 \href{https://www.giss.nasa.gov/tools/latex/ltx-401.html}{Nasa}
 
 
+%%% runas 
 
-\end{document}
+%%%% http://www.personal.psu.edu/ejp10/blogs/gotunicode/charts/runes.html
+
+%% https://www.wikiwand.com/en/Franks_Casket
+
+%https://www.rpi.edu/dept/arc/training/latex/LaTeX_symbols.pdf
+
+
+Teste 
+
+
+
+
+Da wikipedia
+
+In this chapter we will tackle matters related to input encoding, typesetting diacritics and special characters.
+
+In the following document, we will refer to special characters for all symbols other than the lowercase letters a–z, uppercase letters A-Z, figures 0–9, and English punctuation marks.
+
+Some languages usually need a dedicated input system to ease document writing. This is the case for Arabic, Chinese, Japanese, Korean and others. This specific matter will be tackled in Internationalization.
+
+The rules for producing characters with diacritical marks, such as accents, differ somewhat depending whether you are in text mode, math mode, or the tabbing environment.
+
+
+
+Input encoding
+
+TeX uses ASCII by default. But 128 characters is not enough to support non-english languages. TeX has its own way to do that with commands for every diacritical marking (see Escaped codes). But if we want accents and other special characters to appear directly in the source file, we have to tell TeX that we want to use a different encoding.
+
+There are several encodings available to LaTeX:
+
+    ASCII: the default. Only bare english characters are supported in the source file.
+    ISO-8859-1 (a.k.a. Latin 1): 8-bits encoding. It supports most characters for latin languages, but that's it.
+    UTF-8: a Unicode multi-byte encoding. Supports the complete Unicode specification.
+    Others...
+
+In the following we will assume you want to use UTF-8.
+
+There are some important steps to specify encoding.
+
+    Make sure your text editor decodes the file in UTF-8.
+    Make sure it saves your file in UTF-8. Most text editors do not make the distinction, but some do, such as Notepad++.
+    If you are working in a terminal, make sure it is set to support UTF-8 input and output. Some old Unix terminals may not support UTF-8. PuTTY is not set to use UTF-8 by default, you have to configure it.
+    Tell LaTeX that the source file is UTF-8 encoded.
+    
+    
+    Unicode keyboard input
+Wikipedia-logo.png 	
+
+Wikipedia has related information at Unicode input
+
+Some operating systems provide a keyboard combination to input any Unicode code point, the so-called unicode compose key.
+
+Many X applications (*BSD and GNU/Linux) support the Ctrl+Shift+u combination. A 'u' symbol should appear. Type the code point and press enter or space to actually print the character. Example:
+
+<Ctrl+Shift+u> 20AC <space>
+
+will print the euro character.
+
+Desktop environments like GNOME and KDE may feature a customizable compose key for more memorizable sequences.
+
+Xorg features advanced keyboard layouts with variants that let you enter a lot of characters easily with combination using the aprioriate modifier, like Alt Gr. It highly depends on the selected layout+variant, so we suggest you to play a bit with your keyboard, preceeding every key and dead key with the Alt Gr modifier.
+
+In Windows, you can hold Alt and type a <codepoint> to get a desired character. For example,
+
+<Alt> + 0252
+
+will print the German letter ü.
+
+\begin{verbatim}
+\usepackage[utf8]{inputenc}
+\end{verbatim}
+%%https://www.unicode.org/charts/

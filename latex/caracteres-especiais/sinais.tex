@@ -1,0 +1,66 @@
+\documentclass{article}
+
+%\usepackage[brazilian]{babel}  \usepackage[T1]{fontenc}
+
+\usepackage[utf8]{inputenc} 
+\usepackage{hyperref}
+
+\usepackage{textcomp}
+% para usar em \textacutedbl
+
+
+
+
+\usepackage{blindtext}
+
+\title{Sinais diacríticos}
+ \date{\the\year}
+ \author{Wllyssys Alves}
+
+
+\begin{document}
+\maketitle
+
+\section{Nativos}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{l|l|c}
+
+\hline
+\textbf{Nome} & \textbf{Comando} & \textbf{Simbolo} \\ 										% Note a separação de col. e a quebra de linhas
+\hline                                    			 														% para uma linha horizontal
+
+aspas duplas a esquerda	& \textbackslash textquotedblleft	& \textquotedblleft \\
+aspas duplas a direita		& \textbackslash textquotedblright	& \textquotedblright \\
+aspas simples a esquerda	& \textbackslash textquoteleft		& \textquoteleft \\
+aspas simples a direita		& \textbackslash textquoteright		& \textquoteright \\
+til 						& \textbackslash textasciitilde		& \textasciitilde \\
+circunflexo				& \textbackslash textasciicircum		& \textasciicircum \\ \hline
+grave					& \textbackslash\`{}\{o\}			& \`{o} \\
+agudo					& \textbackslash\'{}\{o\}			& \'{o} \\
+circumflex				& \textbackslash\^{}\{o\}			& \^{o} \\
+long Hungarian umlaut		& \textbackslash H\{o\}				& \H{o} \\
+til 						& \textbackslash\~{}\{o\}			& \~{o} \\
+cedilha					& \textbackslash c\{o\}				& \c{c} \\
+macron					& \textbackslash=\{o\}				& \={o} \\
+barra abaixo 				& \textbackslash b\{o\}				& \b{o} \\
+ponto acima				& \textbackslash .\{o\}				& \.{o} \\
+ponto abaixo				& \textbackslash d\{o\}				& \d{o} \\
+braquia					& \textbackslash u\{o\}				& \u{o} \\
+v acima da letra			& \textbackslash v\{o\}				& \v{o} \\
+a "tie" (inverted u) over the two letters	&	\textbackslash t\{o\}	& \t{oo} \\
+umlat ou diaresis			& \textbackslash \textacutedbl\{o\} (aspas duplas no teclado)			&  \"{o} \\
+
+\end{tabular}
+\vspace{0.5cm}
+\caption{Comandos com latex nativo}
+\end{table}
+
+
+% ftp://sunsite.icm.edu.pl/pub/CTAN/info/symbols/comprehensive/symbols-a4.pdf
+% https://www.rpi.edu/dept/arc/training/latex/LaTeX_symbols.pdf
+
+
+
+\end{document}
