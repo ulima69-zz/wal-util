@@ -1,0 +1,8 @@
+#latex
+*.aux
+*.out
+*.synctex.gz
+*.blg
+*.lof
+*.lot
+*.toc
