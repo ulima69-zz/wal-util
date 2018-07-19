@@ -1,11 +1,15 @@
 # wal-util
 
 
-## Latim
+## NPM
 
-- Palavras cruzadas - https://www.latincrosswords.com/
-- Podcasts e artigos - https://www.latinitium.com/
-- Lista de docimentos úteis - https://warwick.ac.uk/fac/arts/classics/students/modules/ltlit/usefuldocuments/
-
-## Miscelânea
-- Livros do Index Librorum Prohibitorum - https://www.wikiwand.com/en/List_of_authors_and_works_on_the_Index_Librorum_Prohibitorum
+- Install Local Packages: `npm install <package_name>`
+- Install Global Packages: `npm install -g <package>`
+- Create a package.json with values that you supply: `npm init`
+- Create a default package.json: `npm init --yes`
+- Set several config options:
+````
+npm set init.author.email "wombat@npmjs.com"
+npm set init.author.name "ag_dubs"
+npm set init.license "MIT"
+```
